@@ -55,9 +55,11 @@
       box-shadow: var(--shadow);
       display:grid; place-items:center;
       overflow:hidden;
+      flex: 0 0 auto;
     }
     .logoImgWrap img{
-      width:100%; height:100%; object-fit:contain;
+      width:100%; height:100%;
+      object-fit:contain;
       padding:6px;
     }
     h1{margin:0; font-size:16px; line-height:1.2}
@@ -115,15 +117,21 @@
       transition: width .25s ease;
     }
 
+    /* ✅ FIXED: section cards are GRID so titles align perfectly */
     .sectionCard{
       border:1px solid var(--line);
       border-radius: 14px;
       padding:12px;
       background: linear-gradient(180deg, rgba(90,103,255,.06), rgba(18,179,168,.04));
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
       margin-top:10px;
+
+      display:grid;
+      grid-template-columns: 40px 1fr auto; /* badge | text | button */
+      align-items:center;
+      gap:12px;
     }
     .sectionCard.locked{opacity:.55; filter:saturate(.7);}
+
     .badgeNum{
       width:34px; height:34px; border-radius:12px;
       display:grid; place-items:center;
@@ -133,6 +141,14 @@
       font-size:18px;
       font-weight:900;
     }
+    .sectionText{min-width:0;}
+    .sectionText strong{
+      display:block;
+      font-size:14px;
+      line-height:1.2;
+    }
+    .sectionText .muted{margin-top:4px;}
+
     .btn{
       border:1px solid var(--line);
       background: rgba(255,255,255,.95);
@@ -147,6 +163,8 @@
     .btn.primary{
       border-color: rgba(90,103,255,.35);
       background: rgba(90,103,255,.10);
+      min-width:92px; /* ✅ keep Locked/Open same width */
+      text-align:center;
     }
     .btn:disabled{cursor:not-allowed; opacity:.55; transform:none;}
 
@@ -212,9 +230,7 @@
     html[dir="rtl"] ul{margin:8px 18px 0 0}
     html[dir="rtl"] .choice{text-align:right}
 
-    /* =========================
-       HERO BADGE MODAL + CONFETTI
-    ========================= */
+    /* HERO BADGE MODAL + CONFETTI */
     .overlay{
       position:fixed;
       inset:0;
@@ -291,7 +307,8 @@
       <div class="brand">
         <!-- ✅ Replace "school-logo.png" with your real logo file path/name -->
         <div class="logoImgWrap" title="School Logo">
-          <img src="school-logo.png" alt="School Logo" onerror="this.style.display='none'; this.parentElement.textContent='🏫'; this.parentElement.style.fontWeight='900';" />
+          <img src="Altaleaalogo.png" alt="School Logo"
+               onerror="this.style.display='none'; this.parentElement.textContent='🏫'; this.parentElement.style.fontWeight='900';" />
         </div>
         <div>
           <h1 id="brandTitle">Online Safety Course</h1>
@@ -324,34 +341,28 @@
         </div>
 
         <div class="sectionCard" id="secCard1">
-          <div class="row" style="gap:12px">
-            <div class="badgeNum">1</div>
-            <div>
-              <strong id="sec1Name">Passwords & Codes</strong>
-              <div class="muted" id="sec1Hint">Simple steps + 3 MCQ</div>
-            </div>
+          <div class="badgeNum">1</div>
+          <div class="sectionText">
+            <strong id="sec1Name">Passwords & Codes</strong>
+            <div class="muted" id="sec1Hint">Simple steps + 3 MCQ</div>
           </div>
           <button class="btn primary" id="open1">Open</button>
         </div>
 
         <div class="sectionCard locked" id="secCard2">
-          <div class="row" style="gap:12px">
-            <div class="badgeNum">2</div>
-            <div>
-              <strong id="sec2Name">Links & Downloads</strong>
-              <div class="muted" id="sec2Hint">Unlock after Section 1</div>
-            </div>
+          <div class="badgeNum">2</div>
+          <div class="sectionText">
+            <strong id="sec2Name">Links & Downloads</strong>
+            <div class="muted" id="sec2Hint">Unlock after Section 1</div>
           </div>
           <button class="btn primary" id="open2" disabled>Locked</button>
         </div>
 
         <div class="sectionCard locked" id="secCard3">
-          <div class="row" style="gap:12px">
-            <div class="badgeNum">3</div>
-            <div>
-              <strong id="sec3Name">Privacy & Posting</strong>
-              <div class="muted" id="sec3Hint">Unlock after Section 2</div>
-            </div>
+          <div class="badgeNum">3</div>
+          <div class="sectionText">
+            <strong id="sec3Name">Privacy & Posting</strong>
+            <div class="muted" id="sec3Hint">Unlock after Section 2</div>
           </div>
           <button class="btn primary" id="open3" disabled>Locked</button>
         </div>
@@ -395,7 +406,6 @@
   </div>
 </main>
 
-<!-- ✅ HERO BADGE + CONFETTI -->
 <canvas id="confetti"></canvas>
 
 <div class="overlay" id="heroOverlay" role="dialog" aria-modal="true" aria-label="Completion Badge">
@@ -407,9 +417,7 @@
     <div class="modalBody">
       <div class="heroMedal"><span>🦸</span></div>
       <h2 class="heroTitle" id="heroTitle">Online Safe Hero</h2>
-      <p class="heroSub" id="heroSub">
-        You completed all 3 sections. Keep using these safety habits!
-      </p>
+      <p class="heroSub" id="heroSub">You completed all 3 sections. Keep using these safety habits!</p>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="heroReplay">Replay Confetti</button>
@@ -423,9 +431,6 @@
   const $$ = (q, el=document)=>Array.from(el.querySelectorAll(q));
   const KEY = "online_safety_3sections_light_bilingual_v2";
 
-  // =========================
-  // I18N
-  // =========================
   const I18N = {
     en: {
       dir:"ltr",
@@ -450,7 +455,6 @@
       resultPass:"Passed ✅ Next section unlocked.",
       resultFail:"Not passed ❌ Review the steps and try again.",
       flashes:{saved:"Saved!", loaded:"Loaded!", nosave:"No save found."},
-
       heroHeader:"Achievement",
       heroTitle:"Online Safe Hero",
       heroSub:"You completed all 3 sections. Keep using these safety habits!",
@@ -480,7 +484,6 @@
       resultPass:"نجحت ✅ تم فتح القسم التالي.",
       resultFail:"لم تنجح ❌ راجع الخطوات وحاول مرة أخرى.",
       flashes:{saved:"تم الحفظ!", loaded:"تم التحميل!", nosave:"لا يوجد حفظ."},
-
       heroHeader:"إنجاز",
       heroTitle:"بطل الأمان الرقمي",
       heroSub:"أكملت الأقسام الثلاثة. استمر على عادات الأمان!",
@@ -489,11 +492,6 @@
     }
   };
 
-  // =========================
-  // Course Content (Steps + 3 MCQ each)
-  // Points: 10 per correct answer
-  // Pass: 2/3 correct
-  // =========================
   const COURSE = {
     en: [
       {
@@ -585,15 +583,12 @@
     ]
   };
 
-  // =========================
-  // State
-  // =========================
   const state = {
     lang: "en",
     unlocked: 1,
     active: 1,
     points: 0,
-    heroShown: false, // ✅ ensures modal shows once (unless reset)
+    heroShown: false,
     section: {
       1: { answers:{}, submitted:false, score:0, passed:false, awarded:0 },
       2: { answers:{}, submitted:false, score:0, passed:false, awarded:0 },
@@ -601,45 +596,6 @@
     }
   };
 
-  // =========================
-  // Helpers
-  // =========================
-  function escape(s){
-    return String(s)
-      .replaceAll("&","&amp;").replaceAll("<","&lt;")
-      .replaceAll(">","&gt;").replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-  function flash(msg){
-    const sub = $("#brandSub");
-    const old = sub.textContent;
-    sub.textContent = msg;
-    sub.style.color = "var(--accent2)";
-    setTimeout(()=>{ sub.textContent = old; sub.style.color=""; }, 1200);
-  }
-  function saveSilent(){ localStorage.setItem(KEY, JSON.stringify(state)); }
-  function save(){ saveSilent(); flash(I18N[state.lang].flashes.saved); }
-  function load(){
-    const raw = localStorage.getItem(KEY);
-    if(!raw) return flash(I18N[state.lang].flashes.nosave);
-    try{
-      const data = JSON.parse(raw);
-      Object.assign(state, data);
-      if(!I18N[state.lang]) state.lang = "en";
-      // safety defaults
-      state.unlocked = Math.max(1, Math.min(3, state.unlocked || 1));
-      state.active = Math.max(1, Math.min(state.unlocked, state.active || 1));
-      state.section = state.section || state.section;
-      renderAll();
-      flash(I18N[state.lang].flashes.loaded);
-    }catch{ flash("Error"); }
-  }
-  function resetAll(){ localStorage.removeItem(KEY); location.reload(); }
-  function setLang(next){ state.lang = next; renderAll(); }
-
-  // =========================
-  // Render
-  // =========================
   function applyI18n(){
     const t = I18N[state.lang];
     document.documentElement.lang = state.lang;
@@ -666,7 +622,6 @@
     $("#submitBtn").textContent = t.submit;
     $("#footerText").textContent = t.footer;
 
-    // section names/hints
     const c = COURSE[state.lang];
     $("#sec1Name").textContent = c[0].name;
     $("#sec2Name").textContent = c[1].name;
@@ -682,7 +637,6 @@
 
     $("#langToggle").textContent = (state.lang === "en") ? "AR" : "EN";
 
-    // hero modal text
     $("#heroHeader").textContent = t.heroHeader;
     $("#heroTitle").textContent = t.heroTitle;
     $("#heroSub").textContent = t.heroSub;
@@ -787,7 +741,6 @@
     const passed = correct >= 2;
     secState.passed = passed;
 
-    // mark buttons
     sec.questions.forEach((qq, qi)=>{
       const chosen = secState.answers[qi];
       const btns = $$(`.choice[data-qi="${qi}"]`);
@@ -801,7 +754,6 @@
       if(fb) fb.textContent = (chosen === qq.ok) ? "✅" : "❌ " + qq.why;
     });
 
-    // award points once per section (delta)
     const prevAwarded = secState.awarded ?? 0;
     const delta = secState.score - prevAwarded;
     if(delta > 0){
@@ -809,12 +761,10 @@
       secState.awarded = secState.score;
     }
 
-    // unlock next section
     if(passed && state.unlocked < 3 && state.active === state.unlocked){
       state.unlocked = Math.min(3, state.unlocked + 1);
     }
 
-    // result box
     $("#resultBox").hidden = false;
     $("#resultBox").className = "callout " + (passed ? "ok" : "warn");
     $("#resultBox").innerHTML = `
@@ -827,17 +777,13 @@
     $("#sectionPoints").textContent = secState.score;
 
     if(!silent) saveSilent();
-
-    // ✅ show hero badge if all passed
     maybeShowHero();
   }
 
-  // =========================
-  // Unlock completion badge + confetti
-  // =========================
-  function allSectionsPassed(){
-    return [1,2,3].every(i => state.section[i]?.passed);
-  }
+  function saveSilent(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+  function save(){ saveSilent(); flash(I18N[state.lang].flashes.saved); }
+
+  function allSectionsPassed(){ return [1,2,3].every(i => state.section[i]?.passed); }
 
   function maybeShowHero(){
     if(allSectionsPassed() && !state.heroShown){
@@ -856,7 +802,6 @@
     stopConfetti();
   }
 
-  // Confetti (lightweight canvas)
   let confettiTimer = null;
   let raf = null;
   let particles = [];
@@ -884,10 +829,9 @@
       particles.forEach(p=>{
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.03;          // gravity
+        p.vy += 0.03;
         p.rot += p.vr;
 
-        // wrap/re-spawn
         if(p.y > h + 20) { Object.assign(p, makeParticle(true)); p.y = -10; }
 
         ctx.save();
@@ -945,9 +889,6 @@
     if(e.target.id === "heroOverlay") hideHeroModal();
   });
 
-  // =========================
-  // Actions
-  // =========================
   function openSection(n){
     if(n > state.unlocked) return;
     state.active = n;
@@ -974,7 +915,7 @@
     renderSection();
   });
 
-  $("#resetBtn").addEventListener("click", resetAll);
+  $("#resetBtn").addEventListener("click", ()=>{ localStorage.removeItem(KEY); location.reload(); });
   $("#saveBtn").addEventListener("click", save);
   $("#loadBtn").addEventListener("click", load);
 
@@ -982,9 +923,8 @@
     setLang(state.lang === "en" ? "ar" : "en");
   });
 
-  // =========================
-  // Init
-  // =========================
+  function setLang(next){ state.lang = next; renderAll(); }
+
   function renderAll(){
     applyI18n();
     renderLeft();
@@ -1003,7 +943,6 @@
         state.unlocked = Math.max(1, Math.min(3, state.unlocked || 1));
         state.active = Math.max(1, Math.min(state.unlocked, state.active || 1));
 
-        // ensure section structure exists
         state.section = state.section || {};
         for(const i of [1,2,3]){
           if(!state.section[i]) state.section[i] = { answers:{}, submitted:false, score:0, passed:false, awarded:0 };
