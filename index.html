@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Online Safety Course (EN/AR) — 3 Sections</title>
 
-  <!-- ✅ Website icon (tab icon) -->
+  <!-- ✅ Replace "school-logo.png" with your real logo file path/name -->
   <link rel="icon" type="image/png" href="Altaleaa logo.png" />
 
   <style>
@@ -43,28 +43,11 @@
       border-bottom:1px solid var(--line);
     }
     .wrap{max-width:1000px; margin:0 auto; padding:16px;}
-
-    /* ✅ BIG SCHOOL LOGO ROW */
-    .schoolHeaderLogo{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:10px 0 12px;
-    }
-    .schoolHeaderLogo img{
-      height:62px;                 /* change size here */
-      max-width: 220px;
-      object-fit:contain;
-      filter: drop-shadow(0 10px 25px rgba(21,32,70,.10));
-    }
-
     .top{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; flex-wrap:wrap;
     }
     .brand{display:flex; align-items:center; gap:12px;}
-
-    /* Small logo (optional, can remove if you want only the big logo) */
     .logoImgWrap{
       width:44px; height:44px; border-radius:14px;
       border:1px solid var(--line);
@@ -72,14 +55,11 @@
       box-shadow: var(--shadow);
       display:grid; place-items:center;
       overflow:hidden;
-      flex: 0 0 auto;
     }
     .logoImgWrap img{
-      width:100%; height:100%;
-      object-fit:contain;
+      width:100%; height:100%; object-fit:contain;
       padding:6px;
     }
-
     h1{margin:0; font-size:16px; line-height:1.2}
     .sub{margin:0; font-size:12px; color:var(--muted)}
     .right{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
@@ -135,21 +115,15 @@
       transition: width .25s ease;
     }
 
-    /* ✅ FIX: section cards always align */
     .sectionCard{
       border:1px solid var(--line);
       border-radius: 14px;
       padding:12px;
       background: linear-gradient(180deg, rgba(90,103,255,.06), rgba(18,179,168,.04));
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
       margin-top:10px;
-
-      display:grid;
-      grid-template-columns: 40px 1fr auto; /* badge | text | button */
-      align-items:center;
-      gap:12px;
     }
     .sectionCard.locked{opacity:.55; filter:saturate(.7);}
-
     .badgeNum{
       width:34px; height:34px; border-radius:12px;
       display:grid; place-items:center;
@@ -159,14 +133,6 @@
       font-size:18px;
       font-weight:900;
     }
-    .sectionText{min-width:0;}
-    .sectionText strong{
-      display:block;
-      font-size:14px;
-      line-height:1.2;
-    }
-    .sectionText .muted{margin-top:4px;}
-
     .btn{
       border:1px solid var(--line);
       background: rgba(255,255,255,.95);
@@ -181,11 +147,10 @@
     .btn.primary{
       border-color: rgba(90,103,255,.35);
       background: rgba(90,103,255,.10);
-      min-width:92px;
-      text-align:center;
     }
     .btn:disabled{cursor:not-allowed; opacity:.55; transform:none;}
 
+    /* Right panel content */
     .big{
       font-size:18px;
       font-weight:950;
@@ -243,10 +208,13 @@
 
     footer{color:var(--muted); font-size:12px; padding:14px 0 0}
 
+    /* RTL support */
     html[dir="rtl"] ul{margin:8px 18px 0 0}
     html[dir="rtl"] .choice{text-align:right}
 
-    /* HERO BADGE MODAL + CONFETTI */
+    /* =========================
+       HERO BADGE MODAL + CONFETTI
+    ========================= */
     .overlay{
       position:fixed;
       inset:0;
@@ -273,6 +241,7 @@
       border-bottom:1px solid var(--line);
       display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
+    .modalTop strong{font-size:14px}
     .closeX{
       border:1px solid var(--line);
       background:white;
@@ -289,12 +258,14 @@
       display:grid; place-items:center;
       background: linear-gradient(135deg, rgba(90,103,255,.18), rgba(18,179,168,.14));
       border: 1px solid rgba(90,103,255,.22);
+      position:relative;
     }
     .heroMedal span{font-size:44px}
     .heroTitle{
       margin:0;
       font-size:20px;
       font-weight:950;
+      letter-spacing:.2px;
     }
     .heroSub{margin:8px 0 14px; color:var(--muted); font-size:13px; line-height:1.45;}
     .modalActions{
@@ -316,21 +287,12 @@
 <body>
 <header>
   <div class="wrap">
-
-    <!-- ✅ BIG LOGO ON HEADER -->
-    <div class="schoolHeaderLogo">
-      <img src="Altaleaa logo.png" alt="School Logo"
-           onerror="this.style.display='none'; this.parentElement.textContent='🏫'; this.parentElement.style.fontWeight='900'; this.parentElement.style.fontSize='40px';" />
-    </div>
-
     <div class="top">
       <div class="brand">
-        <!-- Optional small icon beside title (keep or delete) -->
+        <!-- ✅ Replace "school-logo.png" with your real logo file path/name -->
         <div class="logoImgWrap" title="School Logo">
-          <img src="school-logo.png" alt="School Logo"
-               onerror="this.style.display='none'; this.parentElement.textContent='🏫'; this.parentElement.style.fontWeight='900';" />
+          <img src="Altaleaa logo.png" alt="School Logo" onerror="this.style.display='none'; this.parentElement.textContent='🏫'; this.parentElement.style.fontWeight='900';" />
         </div>
-
         <div>
           <h1 id="brandTitle">Online Safety Course</h1>
           <p class="sub" id="brandSub">3 sections — unlock as you pass</p>
@@ -348,6 +310,7 @@
 
 <main class="wrap">
   <div class="grid">
+    <!-- LEFT: Sections -->
     <aside class="card">
       <div class="hd">
         <h2 class="title" id="sectionsTitle">Sections</h2>
@@ -361,28 +324,34 @@
         </div>
 
         <div class="sectionCard" id="secCard1">
-          <div class="badgeNum">1</div>
-          <div class="sectionText">
-            <strong id="sec1Name">Passwords & Codes</strong>
-            <div class="muted" id="sec1Hint">Simple steps + 3 MCQ</div>
+          <div class="row" style="gap:12px">
+            <div class="badgeNum">1</div>
+            <div>
+              <strong id="sec1Name">Passwords & Codes</strong>
+              <div class="muted" id="sec1Hint">Simple steps + 3 MCQ</div>
+            </div>
           </div>
           <button class="btn primary" id="open1">Open</button>
         </div>
 
         <div class="sectionCard locked" id="secCard2">
-          <div class="badgeNum">2</div>
-          <div class="sectionText">
-            <strong id="sec2Name">Links & Downloads</strong>
-            <div class="muted" id="sec2Hint">Unlock after Section 1</div>
+          <div class="row" style="gap:12px">
+            <div class="badgeNum">2</div>
+            <div>
+              <strong id="sec2Name">Links & Downloads</strong>
+              <div class="muted" id="sec2Hint">Unlock after Section 1</div>
+            </div>
           </div>
           <button class="btn primary" id="open2" disabled>Locked</button>
         </div>
 
         <div class="sectionCard locked" id="secCard3">
-          <div class="badgeNum">3</div>
-          <div class="sectionText">
-            <strong id="sec3Name">Privacy & Posting</strong>
-            <div class="muted" id="sec3Hint">Unlock after Section 2</div>
+          <div class="row" style="gap:12px">
+            <div class="badgeNum">3</div>
+            <div>
+              <strong id="sec3Name">Privacy & Posting</strong>
+              <div class="muted" id="sec3Hint">Unlock after Section 2</div>
+            </div>
           </div>
           <button class="btn primary" id="open3" disabled>Locked</button>
         </div>
@@ -397,6 +366,7 @@
       </div>
     </aside>
 
+    <!-- RIGHT: Active section -->
     <section class="card">
       <div class="hd">
         <div>
@@ -425,6 +395,7 @@
   </div>
 </main>
 
+<!-- ✅ HERO BADGE + CONFETTI -->
 <canvas id="confetti"></canvas>
 
 <div class="overlay" id="heroOverlay" role="dialog" aria-modal="true" aria-label="Completion Badge">
@@ -436,7 +407,9 @@
     <div class="modalBody">
       <div class="heroMedal"><span>🦸</span></div>
       <h2 class="heroTitle" id="heroTitle">Online Safe Hero</h2>
-      <p class="heroSub" id="heroSub">You completed all 3 sections. Keep using these safety habits!</p>
+      <p class="heroSub" id="heroSub">
+        You completed all 3 sections. Keep using these safety habits!
+      </p>
     </div>
     <div class="modalActions">
       <button class="btn primary" id="heroReplay">Replay Confetti</button>
@@ -448,8 +421,11 @@
 <script>
   const $ = (q, el=document)=>el.querySelector(q);
   const $$ = (q, el=document)=>Array.from(el.querySelectorAll(q));
-  const KEY = "online_safety_3sections_light_bilingual_v3";
+  const KEY = "online_safety_3sections_light_bilingual_v2";
 
+  // =========================
+  // I18N
+  // =========================
   const I18N = {
     en: {
       dir:"ltr",
@@ -474,6 +450,7 @@
       resultPass:"Passed ✅ Next section unlocked.",
       resultFail:"Not passed ❌ Review the steps and try again.",
       flashes:{saved:"Saved!", loaded:"Loaded!", nosave:"No save found."},
+
       heroHeader:"Achievement",
       heroTitle:"Online Safe Hero",
       heroSub:"You completed all 3 sections. Keep using these safety habits!",
@@ -503,6 +480,7 @@
       resultPass:"نجحت ✅ تم فتح القسم التالي.",
       resultFail:"لم تنجح ❌ راجع الخطوات وحاول مرة أخرى.",
       flashes:{saved:"تم الحفظ!", loaded:"تم التحميل!", nosave:"لا يوجد حفظ."},
+
       heroHeader:"إنجاز",
       heroTitle:"بطل الأمان الرقمي",
       heroSub:"أكملت الأقسام الثلاثة. استمر على عادات الأمان!",
@@ -511,61 +489,111 @@
     }
   };
 
+  // =========================
+  // Course Content (Steps + 3 MCQ each)
+  // Points: 10 per correct answer
+  // Pass: 2/3 correct
+  // =========================
   const COURSE = {
     en: [
-      { id:1, name:"Passwords & Codes",
-        steps:["Use a long passphrase (12+ characters).","Never share one-time codes (OTP) or verification codes.","Turn on 2-step verification when available."],
+      {
+        id:1,
+        name:"Passwords & Codes",
+        steps:[
+          "Use a long passphrase (12+ characters).",
+          "Never share one-time codes (OTP) or verification codes.",
+          "Turn on 2-step verification when available."
+        ],
         questions:[
           { q:"Which password is strongest?", a:["cat123","Blue!River-Cloud99","password"], ok:1, why:"Long + mixed characters is harder to guess." },
           { q:"A friend asks for your OTP code. What should you do?", a:["Send it quickly","Never share it","Post it in the group chat"], ok:1, why:"OTP codes can be used to steal accounts." },
           { q:"Best place to store passwords is:", a:["A password manager or written safely at home","In public notes app","Same password everywhere"], ok:0, why:"Use safe storage and never reuse passwords." }
-        ]},
-      { id:2, name:"Links & Downloads",
-        steps:["Don’t click strange links in messages—go to the official app/site yourself.","Download apps only from trusted stores.","If something says “urgent” or “secret”, slow down."],
+        ]
+      },
+      {
+        id:2,
+        name:"Links & Downloads",
+        steps:[
+          "Don’t click strange links in messages—go to the official app/site yourself.",
+          "Download apps only from trusted stores.",
+          "If something says “urgent” or “secret”, slow down."
+        ],
         questions:[
           { q:"Which link looks most suspicious?", a:["school.edu/portal","my-game-free-rewards.xyz","library.gov/books"], ok:1, why:"Random domains + rewards are common scam signs." },
           { q:"You get a pop-up saying “Update now!” What’s safest?", a:["Close it and update from the official store/settings","Click the pop-up","Ask the pop-up for help"], ok:0, why:"Updates should come from official sources." },
           { q:"A message says: “Don’t tell anyone. Click now.” This is a:", a:["Red flag","Normal reminder","Teacher instruction"], ok:0, why:"Secrecy + urgency is a scam tactic." }
-        ]},
-      { id:3, name:"Privacy & Posting",
-        steps:["Keep your profile private and accept only people you know in real life.","Before posting photos, check for school name, address, or schedule.","If someone bothers you: block, report, screenshot, tell an adult."],
+        ]
+      },
+      {
+        id:3,
+        name:"Privacy & Posting",
+        steps:[
+          "Keep your profile private and accept only people you know in real life.",
+          "Before posting photos, check for school name, address, or schedule.",
+          "If someone bothers you: block, report, screenshot, tell an adult."
+        ],
         questions:[
           { q:"What is OK to post publicly?", a:["Your address","A photo showing your timetable","A drawing with no personal details"], ok:2, why:"Share content that doesn’t reveal identity or location." },
           { q:"Best setting for friend requests is:", a:["Everyone","Only people I know","Strangers only"], ok:1, why:"Limit contact to real-life connections." },
           { q:"Someone is bullying you online. Best action?", a:["Argue back","Block/report and tell a trusted adult","Share their private info"], ok:1, why:"Don’t escalate—get help and use safety tools." }
-        ]}
+        ]
+      }
     ],
     ar: [
-      { id:1, name:"كلمات المرور والرموز المؤقتة",
-        steps:["استخدم عبارة مرور طويلة (١٢ حرفاً أو أكثر).","لا تشارك أبداً رمز التحقق (OTP) أو أي رمز دخول.","فعّل التحقق بخطوتين عندما يكون متاحاً."],
+      {
+        id:1,
+        name:"كلمات المرور والرموز المؤقتة",
+        steps:[
+          "استخدم عبارة مرور طويلة (١٢ حرفاً أو أكثر).",
+          "لا تشارك أبداً رمز التحقق (OTP) أو أي رمز دخول.",
+          "فعّل التحقق بخطوتين عندما يكون متاحاً."
+        ],
         questions:[
           { q:"أي كلمة مرور هي الأقوى؟", a:["cat123","Blue!River-Cloud99","password"], ok:1, why:"طول أكبر + تنوع يجعل التخمين أصعب." },
-          { q:"صديق يطلب منك رمز OTP. ماذا تفعل؟", a:["أرسله بسرعة","لا تشاركه أبداً","اكتبه في مجموعة الصف"], ok:1, why:"أكواد OTP قد تُستخدم لسرقة الحساب." },
+          { q:"صديق يطلب منك رمز OTP. ماذا تفعل؟", a:["أرسله بسرعة","لا تشاركه أبداً","اكتبه في مجموعة الصف"], ok:1, why:"رموز OTP قد تُستخدم لسرقة الحساب." },
           { q:"أفضل مكان لحفظ كلمات المرور هو:", a:["مدير كلمات مرور أو كتابة آمنة في المنزل","ملاحظات عامة","نفس الكلمة لكل الحسابات"], ok:0, why:"احفظها بشكل آمن ولا تعِد استخدامها." }
-        ]},
-      { id:2, name:"الروابط والتنزيلات",
-        steps:["لا تضغط روابط غريبة في الرسائل—اذهب للموقع/التطبيق الرسمي بنفسك.","نزّل التطبيقات من المتاجر الموثوقة فقط.","إذا كانت الرسالة «مستعجلة» أو «سرية»… تمهّل."],
+        ]
+      },
+      {
+        id:2,
+        name:"الروابط والتنزيلات",
+        steps:[
+          "لا تضغط روابط غريبة في الرسائل—اذهب للموقع/التطبيق الرسمي بنفسك.",
+          "نزّل التطبيقات من المتاجر الموثوقة فقط.",
+          "إذا كانت الرسالة «مستعجلة» أو «سرية»… تمهّل."
+        ],
         questions:[
           { q:"أي رابط يبدو الأكثر ريبة؟", a:["school.edu/portal","my-game-free-rewards.xyz","library.gov/books"], ok:1, why:"نطاقات عشوائية + مكافآت غالباً علامة احتيال." },
           { q:"ظهرت نافذة تقول «حدّث الآن!». ما الأكثر أماناً؟", a:["أغلقها وحدّث من المتجر/الإعدادات الرسمية","اضغط النافذة","اطلب مساعدة من النافذة"], ok:0, why:"التحديثات يجب أن تكون من مصدر رسمي." },
           { q:"رسالة تقول: «لا تخبر أحداً. اضغط الآن». هذا:", a:["إشارة خطر","تذكير طبيعي","تعليمات معلم"], ok:0, why:"السرية + الاستعجال أسلوب شائع للاحتيال." }
-        ]},
-      { id:3, name:"الخصوصية والنشر",
-        steps:["اجعل الحساب خاصاً ولا تقبل إلا من تعرفهم في الواقع.","قبل نشر الصور، تحقق من اسم المدرسة أو العنوان أو الجدول.","إذا أزعجك أحد: احظر، أبلغ، التقط لقطة شاشة، وأخبر شخصاً بالغاً."],
+        ]
+      },
+      {
+        id:3,
+        name:"الخصوصية والنشر",
+        steps:[
+          "اجعل الحساب خاصاً ولا تقبل إلا من تعرفهم في الواقع.",
+          "قبل نشر الصور، تحقق من اسم المدرسة أو العنوان أو الجدول.",
+          "إذا أزعجك أحد: احظر، أبلغ، التقط لقطة شاشة، وأخبر شخصاً بالغاً."
+        ],
         questions:[
           { q:"ما الذي يمكن نشره للعامة غالباً؟", a:["عنوان منزلك","صورة تظهر جدولك","رسم بدون معلومات شخصية"], ok:2, why:"انشر ما لا يكشف الهوية أو الموقع." },
           { q:"أفضل إعداد لطلبات الإضافة هو:", a:["الجميع","فقط من أعرفهم","غرباء فقط"], ok:1, why:"قلّل تواصل الغرباء." },
           { q:"شخص يتنمر عليك. أفضل تصرف؟", a:["جادله","احظر/أبلغ وأخبر شخصاً بالغاً تثق به","انشر معلوماته الخاصة"], ok:1, why:"لا تصعّد—استخدم أدوات الأمان واطلب المساعدة." }
-        ]}
+        ]
+      }
     ]
   };
 
+  // =========================
+  // State
+  // =========================
   const state = {
     lang: "en",
     unlocked: 1,
     active: 1,
     points: 0,
-    heroShown: false,
+    heroShown: false, // ✅ ensures modal shows once (unless reset)
     section: {
       1: { answers:{}, submitted:false, score:0, passed:false, awarded:0 },
       2: { answers:{}, submitted:false, score:0, passed:false, awarded:0 },
@@ -573,6 +601,9 @@
     }
   };
 
+  // =========================
+  // Helpers
+  // =========================
   function escape(s){
     return String(s)
       .replaceAll("&","&amp;").replaceAll("<","&lt;")
@@ -592,8 +623,13 @@
     const raw = localStorage.getItem(KEY);
     if(!raw) return flash(I18N[state.lang].flashes.nosave);
     try{
-      Object.assign(state, JSON.parse(raw));
+      const data = JSON.parse(raw);
+      Object.assign(state, data);
       if(!I18N[state.lang]) state.lang = "en";
+      // safety defaults
+      state.unlocked = Math.max(1, Math.min(3, state.unlocked || 1));
+      state.active = Math.max(1, Math.min(state.unlocked, state.active || 1));
+      state.section = state.section || state.section;
       renderAll();
       flash(I18N[state.lang].flashes.loaded);
     }catch{ flash("Error"); }
@@ -601,6 +637,9 @@
   function resetAll(){ localStorage.removeItem(KEY); location.reload(); }
   function setLang(next){ state.lang = next; renderAll(); }
 
+  // =========================
+  // Render
+  // =========================
   function applyI18n(){
     const t = I18N[state.lang];
     document.documentElement.lang = state.lang;
@@ -627,6 +666,7 @@
     $("#submitBtn").textContent = t.submit;
     $("#footerText").textContent = t.footer;
 
+    // section names/hints
     const c = COURSE[state.lang];
     $("#sec1Name").textContent = c[0].name;
     $("#sec2Name").textContent = c[1].name;
@@ -642,6 +682,7 @@
 
     $("#langToggle").textContent = (state.lang === "en") ? "AR" : "EN";
 
+    // hero modal text
     $("#heroHeader").textContent = t.heroHeader;
     $("#heroTitle").textContent = t.heroTitle;
     $("#heroSub").textContent = t.heroSub;
@@ -666,7 +707,8 @@
     $("#open3").disabled = s3Locked;
 
     ["secCard1","secCard2","secCard3"].forEach((id, idx)=>{
-      $("#"+id).style.outline = (state.active === idx+1) ? "3px solid rgba(18,179,168,.25)" : "none";
+      const el = $("#"+id);
+      el.style.outline = (state.active === idx+1) ? "3px solid rgba(18,179,168,.25)" : "none";
     });
   }
 
@@ -691,7 +733,9 @@
     `;
     wrap.appendChild(stepsBox);
 
-    wrap.appendChild(Object.assign(document.createElement("div"), {className:"divider"}));
+    const divider = document.createElement("div");
+    divider.className = "divider";
+    wrap.appendChild(divider);
 
     sec.questions.forEach((qq, qi)=>{
       const qBox = document.createElement("div");
@@ -722,8 +766,11 @@
       });
     });
 
-    if(secState.submitted) applySectionResults({silent:true});
-    else $("#resultBox").hidden = true;
+    if(secState.submitted){
+      applySectionResults({silent:true});
+    } else {
+      $("#resultBox").hidden = true;
+    }
   }
 
   function applySectionResults({silent=false} = {}){
@@ -732,11 +779,15 @@
     const secState = state.section[state.active];
 
     let correct = 0;
-    sec.questions.forEach((qq, qi)=>{ if(secState.answers[qi] === qq.ok) correct++; });
+    sec.questions.forEach((qq, qi)=>{
+      if(secState.answers[qi] === qq.ok) correct++;
+    });
 
     secState.score = correct * 10;
-    secState.passed = correct >= 2;
+    const passed = correct >= 2;
+    secState.passed = passed;
 
+    // mark buttons
     sec.questions.forEach((qq, qi)=>{
       const chosen = secState.answers[qi];
       const btns = $$(`.choice[data-qi="${qi}"]`);
@@ -750,18 +801,24 @@
       if(fb) fb.textContent = (chosen === qq.ok) ? "✅" : "❌ " + qq.why;
     });
 
+    // award points once per section (delta)
     const prevAwarded = secState.awarded ?? 0;
     const delta = secState.score - prevAwarded;
-    if(delta > 0){ state.points += delta; secState.awarded = secState.score; }
+    if(delta > 0){
+      state.points += delta;
+      secState.awarded = secState.score;
+    }
 
-    if(secState.passed && state.unlocked < 3 && state.active === state.unlocked){
+    // unlock next section
+    if(passed && state.unlocked < 3 && state.active === state.unlocked){
       state.unlocked = Math.min(3, state.unlocked + 1);
     }
 
+    // result box
     $("#resultBox").hidden = false;
-    $("#resultBox").className = "callout " + (secState.passed ? "ok" : "warn");
+    $("#resultBox").className = "callout " + (passed ? "ok" : "warn");
     $("#resultBox").innerHTML = `
-      <strong>${escape(secState.passed ? t.resultPass : t.resultFail)}</strong>
+      <strong>${escape(passed ? t.resultPass : t.resultFail)}</strong>
       <div class="muted" style="margin-top:6px">${escape((state.lang==="en" ? "Score" : "النتيجة") + ": " + correct + "/3 • " + secState.score + " pts")}</div>
     `;
 
@@ -770,10 +827,18 @@
     $("#sectionPoints").textContent = secState.score;
 
     if(!silent) saveSilent();
+
+    // ✅ show hero badge if all passed
     maybeShowHero();
   }
 
-  function allSectionsPassed(){ return [1,2,3].every(i => state.section[i]?.passed); }
+  // =========================
+  // Unlock completion badge + confetti
+  // =========================
+  function allSectionsPassed(){
+    return [1,2,3].every(i => state.section[i]?.passed);
+  }
+
   function maybeShowHero(){
     if(allSectionsPassed() && !state.heroShown){
       state.heroShown = true;
@@ -782,12 +847,22 @@
     }
   }
 
-  function showHeroModal(){ $("#heroOverlay").classList.add("show"); startConfetti(2400); }
-  function hideHeroModal(){ $("#heroOverlay").classList.remove("show"); stopConfetti(); }
+  function showHeroModal(){
+    $("#heroOverlay").classList.add("show");
+    startConfetti(2400);
+  }
+  function hideHeroModal(){
+    $("#heroOverlay").classList.remove("show");
+    stopConfetti();
+  }
 
-  let confettiTimer=null, raf=null, particles=[];
+  // Confetti (lightweight canvas)
+  let confettiTimer = null;
+  let raf = null;
+  let particles = [];
   function startConfetti(durationMs=2000){
-    const canvas=$("#confetti"), ctx=canvas.getContext("2d");
+    const canvas = $("#confetti");
+    const ctx = canvas.getContext("2d");
     canvas.classList.add("show");
 
     function resize(){
@@ -798,16 +873,23 @@
     resize();
     window.addEventListener("resize", resize);
 
-    particles = Array.from({length: 140}, ()=>makeParticle());
-    const start = performance.now();
+    particles = Array.from({length: 140}, () => makeParticle());
 
+    const start = performance.now();
     function tick(now){
-      const w=window.innerWidth, h=window.innerHeight;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
       ctx.clearRect(0,0,w,h);
 
       particles.forEach(p=>{
-        p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.rot += p.vr;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.03;          // gravity
+        p.rot += p.vr;
+
+        // wrap/re-spawn
         if(p.y > h + 20) { Object.assign(p, makeParticle(true)); p.y = -10; }
+
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rot);
@@ -816,8 +898,12 @@
         ctx.restore();
       });
 
-      if(now - start < durationMs) raf = requestAnimationFrame(tick);
-      else { stopConfetti(); window.removeEventListener("resize", resize); }
+      if(now - start < durationMs){
+        raf = requestAnimationFrame(tick);
+      }else{
+        stopConfetti();
+        window.removeEventListener("resize", resize);
+      }
     }
     raf = requestAnimationFrame(tick);
 
@@ -841,19 +927,33 @@
   }
 
   function stopConfetti(){
-    const canvas=$("#confetti"), ctx=canvas.getContext("2d");
+    const canvas = $("#confetti");
+    if(!canvas) return;
     canvas.classList.remove("show");
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const ctx = canvas.getContext("2d");
+    ctx && ctx.clearRect(0,0,canvas.width,canvas.height);
     if(raf) cancelAnimationFrame(raf);
-    raf=null; clearTimeout(confettiTimer); confettiTimer=null;
+    raf = null;
+    clearTimeout(confettiTimer);
+    confettiTimer = null;
   }
 
   $("#heroClose").addEventListener("click", hideHeroModal);
   $("#heroOk").addEventListener("click", hideHeroModal);
   $("#heroReplay").addEventListener("click", ()=>startConfetti(2200));
-  $("#heroOverlay").addEventListener("click", (e)=>{ if(e.target.id==="heroOverlay") hideHeroModal(); });
+  $("#heroOverlay").addEventListener("click", (e)=>{
+    if(e.target.id === "heroOverlay") hideHeroModal();
+  });
 
-  function openSection(n){ if(n > state.unlocked) return; state.active = n; renderAll(); }
+  // =========================
+  // Actions
+  // =========================
+  function openSection(n){
+    if(n > state.unlocked) return;
+    state.active = n;
+    renderAll();
+  }
+
   $("#open1").addEventListener("click", ()=>openSection(1));
   $("#open2").addEventListener("click", ()=>openSection(2));
   $("#open3").addEventListener("click", ()=>openSection(3));
@@ -868,6 +968,7 @@
         return;
       }
     }
+
     secState.submitted = true;
     applySectionResults({silent:false});
     renderSection();
@@ -877,18 +978,32 @@
   $("#saveBtn").addEventListener("click", save);
   $("#loadBtn").addEventListener("click", load);
 
-  $("#langToggle").addEventListener("click", ()=> setLang(state.lang === "en" ? "ar" : "en"));
+  $("#langToggle").addEventListener("click", ()=>{
+    setLang(state.lang === "en" ? "ar" : "en");
+  });
 
-  function renderAll(){ applyI18n(); renderLeft(); renderSection(); maybeShowHero(); }
+  // =========================
+  // Init
+  // =========================
+  function renderAll(){
+    applyI18n();
+    renderLeft();
+    renderSection();
+    maybeShowHero();
+  }
 
   (function init(){
     const raw = localStorage.getItem(KEY);
     if(raw){
       try{
-        Object.assign(state, JSON.parse(raw));
-        if(!I18N[state.lang]) state.lang="en";
+        const data = JSON.parse(raw);
+        Object.assign(state, data);
+        if(!I18N[state.lang]) state.lang = "en";
+
         state.unlocked = Math.max(1, Math.min(3, state.unlocked || 1));
         state.active = Math.max(1, Math.min(state.unlocked, state.active || 1));
+
+        // ensure section structure exists
         state.section = state.section || {};
         for(const i of [1,2,3]){
           if(!state.section[i]) state.section[i] = { answers:{}, submitted:false, score:0, passed:false, awarded:0 };
@@ -902,4 +1017,3 @@
 </script>
 </body>
 </html>
-
